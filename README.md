@@ -2,15 +2,18 @@
 
 ## Python version
 
-This project uses Python 3.14.6.
+This project uses Python 3.11.
 
 ## Setup
 
 Create and activate a virtual environment:
 
-python -m venv .venv
+py -3.11 -m venv .venv
+
 .venv\Scripts\Activate
 
 Install packages:
 
-python -m pip install -r requirements.txt
+python -m pip install --upgrade pip
+
+python.exe -m pip install -r requirements.txt
