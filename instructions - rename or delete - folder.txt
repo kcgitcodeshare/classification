@@ -1,0 +1,204 @@
+For folders, Git mainly tracks the files inside them—not empty folders. To rename a folder, move its files; to delete a folder, remove all tracked files inside it. Then commit and push.
+
+## Rename a folder
+
+1. Open your project folder in VS Code.
+2. Open the terminal in VS Code.
+3. Check the current state:
+
+```powershell
+git status
+```
+
+4. Rename the folder using `git mv`:
+
+```powershell
+git mv old-folder-name new-folder-name
+```
+
+Example:
+
+```powershell
+git mv data raw_data
+```
+
+5. Check the change:
+
+```powershell
+git status
+```
+
+6. Commit it:
+
+```powershell
+git commit -m "Rename data folder to raw_data"
+```
+
+7. Push it to GitHub:
+
+```powershell
+git push
+```
+
+8. Refresh GitHub. The folder should now show the new name.
+
+`git mv old-folder new-folder` renames the folder and stages the move for commit. [docs.github](https://docs.github.com/api/article/body?pathname=/en/repositories/working-with-files/managing-files/renaming-a-file)
+
+## Rename a folder with subfolders
+
+Use the same command. Git renames the folder and everything inside it:
+
+```powershell
+git mv old-folder new-folder
+```
+
+Example:
+
+```powershell
+git mv notebooks analysis_notebooks
+```
+
+Then:
+
+```powershell
+git commit -m "Rename notebooks folder"
+git push
+```
+
+## Move files into a new folder
+
+If you want to create a new folder and move files into it:
+
+1. Create the new folder in VS Code.
+2. Move the files into it using File Explorer or VS Code.
+3. Run:
+
+```powershell
+git add .
+```
+
+4. Run:
+
+```powershell
+git status
+```
+
+5. You should see files marked as renamed or moved from the old folder to the new folder.
+6. Commit and push:
+
+```powershell
+git commit -m "Move files into new folder"
+git push
+```
+
+GitHub documents that moving a file is handled by removing it from the old location and adding it in the new location; `git add .` stages both parts of that change. [docs.github](https://docs.github.com/api/article?pathname=/en/repositories/working-with-files/managing-files/moving-a-file-to-a-new-location)
+
+## Delete a folder
+
+1. Open your project folder in VS Code.
+2. Open the terminal in VS Code.
+3. Check what is inside the folder:
+
+```powershell
+git status
+```
+
+4. Delete the folder and all tracked files inside it:
+
+```powershell
+git rm -r folder-name
+```
+
+Example:
+
+```powershell
+git rm -r data
+```
+
+5. Check the deletion:
+
+```powershell
+git status
+```
+
+6. Commit it:
+
+```powershell
+git commit -m "Delete data folder"
+```
+
+7. Push it:
+
+```powershell
+git push
+```
+
+8. Refresh GitHub. The folder and its tracked files should be gone.
+
+The `-r` option means recursive. It is required when deleting a folder because it removes the folder’s files and any subfolders. [git.github](https://git.github.io/htmldocs/git-rm.html)
+
+## Delete an empty folder
+
+Git does not track empty folders. If a folder is empty, simply delete it in VS Code or File Explorer.
+
+Then run:
+
+```powershell
+git status
+```
+
+There will normally be no change to commit, because Git never tracked the empty folder.
+
+## Delete only some files from a folder
+
+If you want to keep the folder but remove selected files:
+
+```powershell
+git rm folder-name\file-name.csv
+```
+
+Example:
+
+```powershell
+git rm data\old-data.csv
+```
+
+Then:
+
+```powershell
+git commit -m "Remove old data file"
+git push
+```
+
+## Rename or delete directly on GitHub
+
+You can delete an entire folder directly on GitHub:
+
+1. Open the GitHub repository.
+2. Open the folder you want to delete.
+3. In the top-right corner, open the dropdown menu.
+4. Choose **Delete directory**.
+5. Review the files that will be deleted.
+6. Confirm the deletion.
+
+GitHub allows deleting an entire directory, including all files inside it. [docs.github](https://docs.github.com/en/repositories/working-with-files/managing-files/deleting-files-in-a-repository)
+
+After changing anything directly on GitHub, go back to your laptop project folder and run:
+
+```powershell
+git pull
+```
+
+This updates your local copy to match GitHub.
+
+## Important safety check
+
+Before deleting a folder, make sure it does not contain files you still need.
+
+Run:
+
+```powershell
+git status
+```
+
+and inspect the folder in VS Code first. Deleting a folder with `git rm -r` removes its tracked files from your local project and, after you push, from GitHub. [git.github](https://git.github.io/htmldocs/git-rm.html)

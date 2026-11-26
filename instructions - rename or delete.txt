@@ -1,0 +1,177 @@
+You can rename or delete a file either directly on GitHub or from your laptop using Git. The best habit is to make the change in your local project folder, commit it, and push it.
+
+## Rename a file from your laptop
+
+1. Open your project folder in VS Code.
+2. Open the terminal in VS Code.
+3. Make sure you are in the project folder.
+4. Run: `git status`
+5. Rename the file using Git:
+
+```powershell
+git mv old-file-name.ipynb new-file-name.ipynb
+```
+
+Example:
+
+```powershell
+git mv regression.ipynb classification.ipynb
+```
+
+6. Run: `git status`
+7. You should see the old file marked as renamed or deleted and the new file staged.
+8. Run:
+
+```powershell
+git commit -m "Rename file"
+```
+
+9. Run:
+
+```powershell
+git push
+```
+
+10. Refresh GitHub and check that the file now has the new name.
+
+`git mv` renames the file and stages the change for the next commit. You then commit and push the change to GitHub. [docs.github](https://docs.github.com/api/article?pathname=/en/repositories/working-with-files/managing-files/renaming-a-file)
+
+## Rename a file inside a folder
+
+Use the folder path:
+
+```powershell
+git mv data\old-file.csv data\new-file.csv
+```
+
+Example:
+
+```powershell
+git mv data\hdb_resale.csv data\hdb_resale_clean.csv
+```
+
+Then:
+
+```powershell
+git commit -m "Rename data file"
+git push
+```
+
+## Delete a file from your laptop
+
+1. Open your project folder in VS Code.
+2. Open the terminal in VS Code.
+3. Run: `git status`
+4. Delete the file using Git:
+
+```powershell
+git rm file-name.ipynb
+```
+
+Example:
+
+```powershell
+git rm regression.ipynb
+```
+
+5. Run: `git status`
+6. You should see the file marked as deleted.
+7. Run:
+
+```powershell
+git commit -m "Delete file"
+```
+
+8. Run:
+
+```powershell
+git push
+```
+
+9. Refresh GitHub and check that the file is gone.
+
+`git rm` removes the file from your project and stages the deletion for the next commit. After committing and pushing, it is removed from GitHub as well. GitHub supports deleting individual files or folders directly in the repository. [docs.github](https://docs.github.com/en/repositories/working-with-files/managing-files)
+
+## Delete a file inside a folder
+
+Use the folder path:
+
+```powershell
+git rm data\old-file.csv
+```
+
+Example:
+
+```powershell
+git rm data\hdb_resale.csv
+```
+
+Then:
+
+```powershell
+git commit -m "Delete data file"
+git push
+```
+
+## Delete a folder
+
+If the folder contains tracked files, remove all files in it:
+
+```powershell
+git rm -r folder-name
+```
+
+Example:
+
+```powershell
+git rm -r data
+```
+
+Then:
+
+```powershell
+git commit -m "Delete data folder"
+git push
+```
+
+Be careful: this removes the folder and all files inside it from both your laptop project and GitHub.
+
+## Rename or delete directly on GitHub
+
+You can also do this in the browser:
+
+1. Open your GitHub repository.
+2. Open the file you want to rename or delete.
+3. For renaming, click the pencil/edit icon.
+4. Change the filename at the top of the editor.
+5. Click **Commit changes**.
+6. For deleting, open the file and click the three-dot menu.
+7. Choose **Delete file**.
+8. Write a commit message.
+9. Click **Commit changes**.
+
+This changes GitHub directly. However, your laptop copy will still have the old version, so afterward run:
+
+```powershell
+git pull
+```
+
+This brings GitHub’s changes back to your laptop.
+
+## Important: keep laptop and GitHub in sync
+
+If you change a file on GitHub directly, run this in your project folder afterward:
+
+```powershell
+git pull
+```
+
+If you change a file on your laptop, run:
+
+```powershell
+git add .
+git commit -m "Describe the change"
+git push
+```
+
+For your project, use `git mv` for renaming and `git rm` for deleting, then `git push`. This keeps your local folder and GitHub repository consistent. [docs.github](https://docs.github.com/api/article?pathname=/en/repositories/working-with-files/managing-files/renaming-a-file)

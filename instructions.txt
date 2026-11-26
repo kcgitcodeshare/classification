@@ -1,0 +1,94 @@
+SCENARIO 1: GITHUB REPOSITORY CREATED FIRST
+
+1. Create the repository on GitHub.
+2. Do not select “Add a README file”, “Add .gitignore”, or “Choose a license” if you want to avoid an initial GitHub commit.
+3. Copy the repository URL, for example: [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
+4. Open your project folder in VS Code.
+5. Open the terminal in VS Code.
+6. Run: git init -b main
+7. Create a .gitignore file in the project root.
+8. Add .venv/ to .gitignore so the virtual environment is not uploaded.
+9. Add any other files or folders you do not want uploaded, such as large datasets or private files.
+10. Run: git add .
+11. Run: git status
+12. Check that .venv/ and private files are not listed.
+13. Run: git commit -m "Initial project setup"
+14. Run: git remote add origin [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
+15. Replace the URL with your actual GitHub repository URL.
+16. Run: git remote -v
+17. Confirm that origin points to your GitHub repository.
+18. Run: git push -u origin main
+19. Complete GitHub sign-in if prompted.
+20. Refresh the GitHub repository page and check that your files appear.
+
+IF GITHUB ALREADY HAS AN INITIAL README, GITIGNORE, OR LICENSE:
+
+1. Run: git pull origin main --allow-unrelated-histories
+2. If a merge message editor opens, save and close it.
+3. If there is a conflict, open the conflicting file in VS Code.
+4. Keep the version you want.
+5. Remove the conflict markers: <<<<<<<, =======, and >>>>>>>.
+6. Save the file.
+7. Run: git add <conflicting-file-name>
+8. Run: git commit -m "Merge GitHub initial files with local project"
+9. Run: git push -u origin main
+
+IF YOU DO NOT NEED GITHUB’S INITIAL FILES:
+
+1. Delete the GitHub repository.
+2. Create a new GitHub repository with the same name.
+3. Leave “Add a README file”, “Add .gitignore”, and “Choose a license” unchecked.
+4. In your project folder, run: git remote remove origin
+5. Run: git remote add origin [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
+6. Run: git push -u origin main
+
+SCENARIO 2: NO GIT REPOSITORY YET
+
+1. Create the project folder on your laptop.
+2. Add your project files, such as notebooks, Python files, requirements.txt, and data files.
+3. Create a .gitignore file in the project root.
+4. Add .venv/ to .gitignore.
+5. Add any large, private, or unnecessary files to .gitignore.
+6. Open the project folder in VS Code.
+7. Open the terminal in VS Code.
+8. Run: git --version
+9. If Git is not installed, install Git for Windows, then close and reopen VS Code.
+10. Run: git init -b main
+11. Run: git status
+12. Run: git add .
+13. Run: git status
+14. Check that .venv/ and private files are not listed.
+15. Run: git commit -m "Initial project setup"
+16. If Git asks for your name and email, run:
+    git config --global user.name "Your Name"
+    git config --global user.email "your-email@example.com"
+17. Create an empty repository on GitHub.
+18. Do not select “Add a README file”, “Add .gitignore”, or “Choose a license”.
+19. Copy the repository URL.
+20. Run: git remote add origin [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
+21. Run: git remote -v
+22. Confirm that origin points to your GitHub repository.
+23. Run: git push -u origin main
+24. Complete GitHub sign-in if prompted.
+25. Refresh the GitHub repository page and check that your files appear.
+
+AFTER EITHER SCENARIO, TO SAVE FUTURE CHANGES:
+
+1. Open the project folder in VS Code.
+2. Open the terminal.
+3. Run: git status
+4. Run: git add .
+5. Run: git commit -m "Describe what you changed"
+6. Run: git push
+7. Refresh GitHub to confirm the changes were uploaded.
+
+USEFUL CHECKS:
+
+1. To see whether files are staged or untracked, run: git status
+2. To see whether you have commits, run: git log --oneline
+3. To see the connected GitHub repository, run: git remote -v
+4. To see your current branch, run: git branch
+5. To check whether a file is ignored, run: git check-ignore -v path\to\file
+6. To add one specific file, run: git add path\to\file
+7. To add a folder, run: git add folder-name/
+8. To push after the first successful push, run: git push
